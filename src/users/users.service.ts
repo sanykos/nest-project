@@ -21,7 +21,7 @@ export class UsersService {
 
 
     async createUser(dto: CreateUserDto): Promise<User> {
-        return this.usersRepository.create(dto)
+        return this.usersRepository.save(dto)
     }
 
     async removeUser(id: number): Promise<void> {
