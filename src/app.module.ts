@@ -3,8 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { User } from './users/user.entity';
-import { RolesService } from './roles/roles.service';
-import { RolesController } from './roles/roles.controller';
 import { RolesModule } from './roles/roles.module';
 import { Role } from './roles/roles.entity';
 
@@ -27,7 +25,7 @@ import { Role } from './roles/roles.entity';
         UsersModule,
         RolesModule,
     ],
-    controllers: [RolesController],
-    providers: [RolesService],
+    controllers: [],
+    providers: [],
 })
 export class AppModule {}
