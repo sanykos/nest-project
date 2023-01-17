@@ -1,5 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Role } from 'src/roles/roles.entity';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    ManyToMany,
+    JoinTable,
+} from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -17,10 +26,13 @@ export class User {
     firstName: string;
     @ApiProperty({ example: 'Lastname', description: 'Фамилия' })
     @Column({ default: null })
-    lastName?: string;
+    lastName: string;
     @ApiProperty({ example: 'true', description: 'Статус пользователя' })
     @Column({ default: true })
     isActive: boolean;
+    @ManyToMany(() => Role)
+    @JoinTable()
+    roles: Role[];
     @ApiProperty({ example: '2023-01-17 01:57:35.265383+03', description: 'Дата создания' })
     @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'CURRENT_TIMESTAMP(6)' })
     createdAt: Date;
